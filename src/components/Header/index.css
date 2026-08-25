@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #aaa;
+  padding-left: 24px;
+  padding-right: 30px;
+}
+
+.cart-and-text {
+  display: flex;
+  align-items: center;
+}
+
+.orders-text {
+  font-family: 'roboto';
+  margin-right: 20px;
+  color: #484646;
+}

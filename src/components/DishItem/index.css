@@ -1,0 +1,113 @@
+.dish-item {
+  border: 1px solid #aaaaaa;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.dish-currency {
+  font-weight: 700;
+  color: #444040;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.dish-description {
+  color: #aaaaaa;
+  margin-top: 6px;
+}
+
+.dish-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+}
+
+.dish-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px;
+}
+
+.veg-icon,
+.non-veg-icon {
+  width: 18px;
+  height: 18px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px;
+}
+
+.veg-icon {
+  border-color: green;
+}
+
+.non-veg-icon {
+  border-color: red;
+}
+
+.dish-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.veg-icon .dish-dot {
+  background-color: green;
+}
+
+.non-veg-icon .dish-dot {
+  background-color: red;
+}
+
+.quantity-container {
+  width: 180px;
+  height: 50px;
+  background-color: #008000;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.quantity-container button {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-container span {
+  color: white;
+  font-size: 22px;
+}
+
+.available-text {
+  color: red;
+}
+
+.customization-text {
+  color: #4c3fbf;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.dish-details {
+  width: 50%;
+}
+
+.calories-text {
+  font-weight: 600;
+  color: rgb(236, 173, 16);
+}
