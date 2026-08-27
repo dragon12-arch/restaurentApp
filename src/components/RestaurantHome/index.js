@@ -9,7 +9,6 @@ class RestaurantHome extends Component {
   state = {
     menuList: [],
     activeCategory: '',
-    cartCount: 0,
   }
 
   componentDidMount() {
