@@ -2,15 +2,17 @@ import {FiShoppingCart} from 'react-icons/fi'
 
 import './index.css'
 
-const Header = () => (
+const Header = ({cartCount}) => (
   <nav className="navbar">
-    <h3>UNI Resto Cafe</h3>
+    <h3 className="restaurant-name">UNI Resto Cafe</h3>
 
     <div className="cart-and-text">
-      <h4 className="orders-text">My Orders</h4>
-      <div>
+      <p className="orders-text">My Orders</p>
+      <div className="cart-icon-container">
         <FiShoppingCart size={24} />
-        <span>0</span>
+        <span className="cart-count" data-testid="cartItemsCount">
+          {cartCount}
+        </span>
       </div>
     </div>
   </nav>

@@ -1,37 +1,62 @@
-.menu-category-container {
-  display: flex;
-  overflow-x: auto;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  padding-bottom: 10px;
-  gap: 25px;
-
-  list-style-type: none;
-  border-bottom: 1px solid #aaa;
+.restaurant-home-container {
+  width: 100%;
+  min-height: 100vh;
 }
 
-.menu-category-container::-webkit-scrollbar {
-  display: none;
+/* --- Category slider --- */
+.menu-categories-slider {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.menu-category-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 12px 16px;
+}
+
+.category-list-item {
+  flex-shrink: 0;
 }
 
 .category-button {
-  border: none;
-  background: transparent;
-  padding: 12px 20px;
-  color: #555;
-  font-size: 16px;
+  white-space: nowrap;
+  margin-right: 12px;
+  padding: 8px 16px;
+  border: 1px solid #d7d7d7;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 14px;
   cursor: pointer;
 }
 
 .active-tab {
-  color: #d32f2f;
-  font-weight: bold;
-  border-bottom: 3px solid #d32f2f;
+  background-color: #f7931e;
+  color: #ffffff;
+  border: 1px solid #f7931e;
 }
 
+/* --- Dish list --- */
 .dish-container {
   list-style-type: none;
-  padding: 0;
   margin: 0;
+  padding: 16px;
+}
+
+/* --- Loading / failure --- */
+.restaurant-loader-container,
+.restaurant-failure-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
 }
