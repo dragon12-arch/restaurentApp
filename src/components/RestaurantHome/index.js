@@ -97,22 +97,23 @@ class RestaurantHome extends Component {
     </div>
   )
 
-  renderLoadingView = () => (
-    <div className="restaurant-loader-container" data-testid="loader">
-      <p>Loading...</p>
-    </div>
-  )
-
   renderContent = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderSuccessView()
+
       case apiStatusConstants.failure:
         return this.renderFailureView()
+
       case apiStatusConstants.inProgress:
-        return this.renderLoadingView()
+        return (
+          <div className="restaurant-loader-container" data-testid="loader">
+            <p>Loading...</p>
+          </div>
+        )
+
       default:
         return null
     }
