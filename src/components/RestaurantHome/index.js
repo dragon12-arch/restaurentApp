@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import CartContext from '../../context/CartContext'
 
 import Header from '../Header'
 import MenuCategories from '../MenuCategories'
@@ -17,7 +18,6 @@ class RestaurantHome extends Component {
   state = {
     menuList: [],
     activeCategoryId: '',
-    cartCount: 0,
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -37,13 +37,17 @@ class RestaurantHome extends Component {
       if (response.ok) {
         const data = await response.json()
         const updatedMenuList = data[0].table_menu_list
-        console.log(updatedMenuList)
 
-        this.setState({
-          menuList: updatedMenuList,
-          activeCategoryId: updatedMenuList[0].menu_category_id,
-          apiStatus: apiStatusConstants.success,
-        })
+        this.setState(
+          {
+            menuList: updatedMenuList,
+            activeCategoryId: updatedMenuList[0].menu_category_id,
+            apiStatus: apiStatusConstants.success,
+          },
+          () => {
+            this.context.setRestaurantName(data[0].restaurant_name)
+          },
+        )
       } else {
         this.setState({apiStatus: apiStatusConstants.failure})
       }
@@ -54,12 +58,6 @@ class RestaurantHome extends Component {
 
   onSelectCategory = categoryId => {
     this.setState({activeCategoryId: categoryId})
-  }
-
-  updateCartCount = value => {
-    this.setState(prevState => ({
-      cartCount: prevState.cartCount + value,
-    }))
   }
 
   getActiveCategoryDishes = () => {
@@ -83,7 +81,7 @@ class RestaurantHome extends Component {
           activeCategoryId={activeCategoryId}
           onSelectCategory={this.onSelectCategory}
         />
-        <DishesList dishes={dishes} updateCartCount={this.updateCartCount} />
+        <DishesList dishes={dishes} />
       </>
     )
   }
@@ -103,32 +101,29 @@ class RestaurantHome extends Component {
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderSuccessView()
-
       case apiStatusConstants.failure:
         return this.renderFailureView()
-
       case apiStatusConstants.inProgress:
         return (
           <div className="restaurant-loader-container" data-testid="loader">
             <p>Loading...</p>
           </div>
         )
-
       default:
         return null
     }
   }
 
   render() {
-    const {cartCount} = this.state
-
     return (
       <div className="restaurant-home-container">
-        <Header cartCount={cartCount} />
+        <Header />
         {this.renderContent()}
       </div>
     )
   }
 }
+
+RestaurantHome.contextType = CartContext
 
 export default RestaurantHome

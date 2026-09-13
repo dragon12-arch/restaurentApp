@@ -1,13 +1,9 @@
 import DishItem from '../DishItem'
 
-const DishesList = ({dishes, updateCartCount}) => (
+const DishesList = ({dishes}) => (
   <ul className="dish-container">
     {dishes.map(eachDish => (
-      <DishItem
-        key={eachDish.dish_id}
-        dishDetails={eachDish}
-        updateCartCount={updateCartCount}
-      />
+      <DishItem key={eachDish.dish_id} dishDetails={eachDish} />
     ))}
   </ul>
 )

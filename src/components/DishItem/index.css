@@ -124,3 +124,14 @@
   object-fit: cover;
   border-radius: 8px;
 }
+
+.add-to-cart-button {
+  margin-top: 8px;
+  padding: 6px 16px;
+  background-color: #f7931e;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}

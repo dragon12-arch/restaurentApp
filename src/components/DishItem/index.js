@@ -1,13 +1,16 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 
+import CartContext from '../../context/CartContext'
 import './index.css'
 
 const DishItem = props => {
   const [count, setCount] = useState(0)
+  const {addCartItem} = useContext(CartContext)
 
-  const {dishDetails, updateCartCount} = props
+  const {dishDetails} = props
 
   const {
+    dish_id: dishId,
     dish_name: dishName,
     dish_currency: dishCurrency,
     dish_price: dishPrice,
@@ -24,14 +27,23 @@ const DishItem = props => {
 
   const onClickIncrease = () => {
     setCount(prevCount => prevCount + 1)
-    updateCartCount(1)
   }
 
   const onClickDecrease = () => {
     if (count > 0) {
       setCount(prevCount => prevCount - 1)
-      updateCartCount(-1)
     }
+  }
+
+  const onClickAddToCart = () => {
+    addCartItem({
+      dishId,
+      dishName,
+      dishImage,
+      dishCurrency,
+      dishPrice,
+      quantity: count,
+    })
   }
 
   return (
@@ -49,29 +61,41 @@ const DishItem = props => {
           <p className="dish-description">{dishDescription}</p>
 
           {dishAvailability ? (
-            <div className="quantity-container">
-              <button
-                type="button"
-                className="quantity-button"
-                onClick={onClickDecrease}
-                data-testid="decrement"
-              >
-                -
-              </button>
+            <>
+              <div className="quantity-container">
+                <button
+                  type="button"
+                  className="quantity-button"
+                  onClick={onClickDecrease}
+                  data-testid="decrement"
+                >
+                  -
+                </button>
 
-              <p className="dish-quantity" data-testid="activeDishQuantity">
-                {count}
-              </p>
+                <p className="dish-quantity" data-testid="activeDishQuantity">
+                  {count}
+                </p>
 
-              <button
-                type="button"
-                className="quantity-button"
-                onClick={onClickIncrease}
-                data-testid="increment"
-              >
-                +
-              </button>
-            </div>
+                <button
+                  type="button"
+                  className="quantity-button"
+                  onClick={onClickIncrease}
+                  data-testid="increment"
+                >
+                  +
+                </button>
+              </div>
+
+              {count > 0 && (
+                <button
+                  type="button"
+                  className="add-to-cart-button"
+                  onClick={onClickAddToCart}
+                >
+                  ADD TO CART
+                </button>
+              )}
+            </>
           ) : (
             <p className="available-text">Not available</p>
           )}
